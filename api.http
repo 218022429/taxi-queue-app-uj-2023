@@ -1,0 +1,22 @@
+POST http://localhost:4015/api/passenger/join
+Content-Type: application/json
+
+{
+     "message" : "join queue"
+}
+
+###
+POST http://localhost:4015/api/passenger/leave
+Content-Type: application/json
+
+{
+     "message" : "leave Queue"
+}
+
+###
+POST http://localhost:4015/api/passenger/join/taxi?queue
+Content-Type: application/json
+
+{
+     "message" : "join Taxi Queue"
+}

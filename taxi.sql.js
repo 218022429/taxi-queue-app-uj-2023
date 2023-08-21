@@ -8,17 +8,21 @@ const  db = await sqlite.open({
 
 await db.migrate();
 
-export async function joinQueue() {
+export async function joinQueue(passenger_queue_count) {
     // console.log('join queue')
+    const sql = `add into taxi_queue (passenger_queue_count) values (?,?,?)`
+    await db.run(sql, [passenger_queue_count]) 
 
 }
 
-export async function leaveQueue() {
-    
+export async function leaveQueue(passenger_queue_count) {
+    const sql = `delete into taxi_queue (passenger_queue_count) values (?,?,?)`
+    await db.run(sql, [passenger_queue_count]) 
 }
 
-export async function joinTaxiQueue() {
-   
+export async function joinTaxiQueue(taxi_queue_count) {
+    const sql = `add into taxi_queue (taxi_queue_count) values (?,?,?)`
+    await db.run(sql, [taxi_queue_count])
 }
 
 export async function queueLength() {

@@ -4,6 +4,8 @@ document.addEventListener('alpine:init', () => {
 
 		return {
 			version: 'api-1.0',
+			passengerQueueCount: 0,
+			taxiQueueCount: 0,
 			queueLength: 0,
 			init() {
 				axios
@@ -14,29 +16,33 @@ document.addEventListener('alpine:init', () => {
 					});
 			},
 			joinQueue() {
-
+				this.passengerQueueCount++;
 			},
 			leaveQueue() {
-
+				if (this.passengerQueueCount > 0) {
+					this.passengerQueueCount--;
+				}
 			},
 
 			joinTaxiQueue() {
-
+				this.taxiQueueCount++;
 			},
 
 			queueLength() {
-
+				return this.passengerQueueCount;
 			},
 
 			taxiQueueLength() {
-
+				return this.passengerQueueCount;
 			},
 
 			taxiDepart() {
-
+				if (this.taxiQueueCount > 0) {
+					this.taxiQueueCount--;
+				}
 			}
 		}
-	});
+		});
 
 });
 
